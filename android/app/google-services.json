@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "6114401463",
+    "project_id": "diu-lab-assistant",
+    "storage_bucket": "diu-lab-assistant.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:6114401463:android:d45afdd73fb9d87cf28132",
+        "android_client_info": {
+          "package_name": "com.example.starterapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "6114401463-8bmpuf4g4g4sng4j498qm7g6048eksk7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.starterapp",
+            "certificate_hash": "8f2820ea13f9eb8cfd78882a30de4e1cd22d7687"
+          }
+        },
+        {
+          "client_id": "6114401463-md45ntdd9o5qgap1po2ufcsg88linrin.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB1eBvzZUP8NIVApMa6uBWUO91044Y0zLU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "6114401463-md45ntdd9o5qgap1po2ufcsg88linrin.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
