@@ -82,25 +82,25 @@ class _StudentDetailsScreenState extends State<StudentDetailsScreen> {
                     var result = weekOneLP + weekTwoLP + weekThreeLP + weekFourLP + weekFiveLP+ assignment + project + labFinal;
 
                     if (result >= 80){
-                      return 'Grade: A+, Grade Point: 4.00';
+                      return '\nGrade: A+\nGrade Point: 4.00';
                     }else if (result >= 75){
-                      return 'Grade: A, Grade Point: 3.75';
+                      return '\nGrade: A\nGrade Point: 3.75';
                     }else if (result >= 70){
-                      return 'Grade: A-, Grade Point: 3.50';
+                      return '\nGrade: A-\nGrade Point: 3.50';
                     }else if (result >= 65){
-                      return 'Grade: B+, Grade Point: 3.25';
+                      return '\nGrade: B+\nGrade Point: 3.25';
                     }else if (result >= 60){
-                      return 'Grade: B, Grade Point: 3.00';
+                      return '\nGrade: B\nGrade Point: 3.00';
                     }else if (result >= 55){
-                      return 'Grade: B-, Grade Point: 2.75';
+                      return '\nGrade: B-\nGrade Point: 2.75';
                     }else if (result >= 50){
-                      return 'Grade: C+, Grade Point: 2.50';
+                      return '\nGrade: C+\nGrade Point: 2.50';
                     }else if (result >= 45){
-                      return 'Grade: C, Grade Point: 2.25';
+                      return '\nGrade: C\nGrade Point: 2.25';
                     }else if (result >= 40){
-                      return 'Grade: D, Grade Point: 2.00';
+                      return '\nGrade: D\nGrade Point: 2.00';
                     }else{
-                      return 'Grade: F, Grade Point: 0.00';
+                      return '\nGrade: F\nGrade Point: 0.00';
                     }
                   }
 

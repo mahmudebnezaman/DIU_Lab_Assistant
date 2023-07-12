@@ -97,6 +97,7 @@ class SemesterController extends GetxController {
   }
 
   Future<void> editStudentResult(String docId, String courseId, String studentId) async {
+    print('Inside update mark method');
   try {
     await firestore
         .collection('users')

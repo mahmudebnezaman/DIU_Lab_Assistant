@@ -68,10 +68,10 @@ class _WeekOneState extends State<WeekOne> {
     } else if (int.parse(controller.labFinalController.text) > 30) {
       VxToast.show(context, msg: 'max Lab Final mark is 30');
     } else {
-      uploadFile().then((value) => controller.editStudentResult(widget.semesteID, widget.courseID, widget.data.id));
-      
+      // uploadFile().then((value) => controller.editStudentResult(widget.semesteID, widget.courseID, widget.data.id));
+      controller.editStudentResult(widget.semesteID, widget.courseID, widget.data.id);
       VxToast.show(context, msg: 'Result Updated');
-      Get.back();
+      // Get.back();
     }
   }
 
@@ -112,11 +112,6 @@ class _WeekOneState extends State<WeekOne> {
                       'out of 5'.text.color(fontGrey).make(),
                     ],
                   ).box.white.rounded.make(),
-                  10.heightBox,
-                  const Icon(Icons.file_upload_rounded, size: 60,).onTap(() {
-                    selectFile();
-                  }),
-                  fileName.text.size(20).semiBold.color(highEmphasis).make(),
                   5.heightBox,
                   Obx(() => controller.isloading.value
                     ? loadingIndicator()
@@ -124,12 +119,37 @@ class _WeekOneState extends State<WeekOne> {
                       buttonSize: 20.0,
                       color: Colors.green,
                       textColor: whiteColor,
-                      title: 'Save',
+                      title: 'Save Mark',
                       onPress: () {
                         validator(context);
                       }
                     )
                   ),
+                  10.heightBox,
+                  Column(
+                    children: [
+                      const Icon(Icons.file_upload_rounded, size: 60,).onTap(() {
+                        selectFile();
+                      }),
+                      fileName.text.size(20).semiBold.color(highEmphasis).make(),
+                      5.heightBox,
+                      Obx(() => controller.isloading.value
+                        ? loadingIndicator()
+                        : myButton(
+                          buttonSize: 20.0,
+                          color: golden,
+                          textColor: whiteColor,
+                          title: 'Upload',
+                          onPress: () {           
+                          uploadFile().then((value) => controller.editStudentResult(widget.semesteID, widget.courseID, widget.data.id));
+                          // controller.editStudentResult(widget.semesteID, widget.courseID, widget.data.id);
+                          VxToast.show(context, msg: 'Report Uploaded');
+                          Get.back();
+                          }
+                        )
+                      ),
+                    ],
+                  ).box.color(textfieldGrey).padding(const EdgeInsets.all(8.0)).rounded.make(),
                   10.heightBox,widget.data['lab_report1'] == '' ? Column(
                     children: [
                       'Please upload the report: '.text.size(16).make(),
