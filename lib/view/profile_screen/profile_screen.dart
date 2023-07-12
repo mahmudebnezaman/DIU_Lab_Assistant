@@ -77,15 +77,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 }),
                 const Spacer(),
                 myButton(
-                  buttonSize: 20.0,
-                  textColor: primary,
-                  color: whiteColor,
-                  onPress: () async {
-                    await Get.put(AuthController()).signoutMethod(context);
-                    Get.offAll( ()=> const LoginScreen());
-                    },
-                  title: 'Sign Out'
-                ).box.border(color: primary, width: 2).roundedSM.width(context.screenWidth).make()
+              buttonSize: 20.0,
+              color: primary,
+              textColor: highEmphasis,
+              title: 'Log Out',
+              onPress:  () async {
+                await Get.put(AuthController()).signoutMethod(context);
+                Get.offAll( ()=> const LoginScreen());
+              },
+            ).box.border(color: primary, width: 2).roundedSM.width(context.screenWidth).make(),
               ]),
           );
           }

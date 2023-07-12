@@ -2,6 +2,7 @@ const icAssingment = "assets/icons/assignment.png";
 const icApplogo = "assets/applogo.png";
 const icAppbg = "assets/appbg.png";
 const icCheck = "assets/icons/check.png";
+const icFile = "assets/icons/file.png";
 const icGoogleLogo = "assets/icons/google_logo.png";
 const icLabFinal = "assets/icons/lab_final.png";
 const icPerformance = "assets/icons/performance.png";

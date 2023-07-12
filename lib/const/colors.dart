@@ -12,5 +12,5 @@ const Color redColor = Color.fromRGBO(230, 46, 4, 1);
 const Color golden = Color.fromRGBO(255, 168, 0, 1);
 const Color lightGolden = Color.fromRGBO(242, 217, 167, 1);
 const Color highEmphasis = Color.fromRGBO(10, 39, 83, 1);
-const Color primary = Color.fromRGBO(51, 133, 255, 1);
+const Color primary = Colors.lightGreen;
 

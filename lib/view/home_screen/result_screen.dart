@@ -54,6 +54,7 @@ class _ResultScreenState extends State<ResultScreen> {
     }
 
     return Scaffold(
+    resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Text(
           '${widget.data['id']}',

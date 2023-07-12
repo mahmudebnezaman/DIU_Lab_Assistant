@@ -12,9 +12,15 @@ import 'package:starterapp/view/home_screen/home_screen.dart';
 import 'package:starterapp/widgets-common/custom_textfeild.dart';
 import 'package:starterapp/widgets-common/end_drawer.dart';
 import 'package:starterapp/widgets-common/my_button.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 
-
+_launchURL(link) async {
+   final Uri url = Uri.parse('$link');
+   if (!await launchUrl(url, mode:  LaunchMode.externalApplication)) {
+        throw Exception('Could not launch $url');
+    }
+}
 class WeekFour extends StatefulWidget {
   final dynamic data;
   final dynamic semesteID;
@@ -65,6 +71,7 @@ class _WeekFourState extends State<WeekFour> {
       VxToast.show(context, msg: 'max Lab Final mark is 30');
     } else {
       uploadFile().then((value) => controller.editStudentResult(widget.semesteID, widget.courseID, widget.data.id));
+      
       VxToast.show(context, msg: 'Result Updated');
       Get.back();
     }
@@ -74,7 +81,7 @@ class _WeekFourState extends State<WeekFour> {
   Widget build(BuildContext context) {
     final fileName = file != null? basename(file!.path) : 'Project Report';
     return Scaffold(
-      
+    resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Text(
           '${widget.data['id']}',
@@ -112,6 +119,7 @@ class _WeekFourState extends State<WeekFour> {
                     selectFile();
                   }),
                   fileName.text.size(20).semiBold.color(highEmphasis).make(),
+                  5.heightBox,
                   Obx(() => controller.isloading.value
                     ? loadingIndicator()
                     : myButton(
@@ -125,7 +133,22 @@ class _WeekFourState extends State<WeekFour> {
                     )
                   ),
                   10.heightBox,
-                  widget.data['lab_report4'] != ''?'The report is available at: ${widget.data['lab_report4']}'.text.size(16).make().box.rounded.color(lightGolden).make() : 'Please upload the porject report'.text.size(16).make().box.rounded.color(lightGolden).make()
+                  widget.data['lab_report4'] == '' ? Column(
+                    children: [
+                      'Please upload the report: '.text.size(16).make(),
+                      5.heightBox,
+                      const Icon(Icons.close_rounded, color: highEmphasis, size: 60,)
+                    ],
+                  ).box.rounded.padding(const EdgeInsets.all(8.0)).color(lightGolden).make() 
+                  : Column(
+                    children: [
+                      'The report is available at: '.text.size(16).make(),
+                      5.heightBox,
+                      Image.asset(icFile, height: 60,)
+                    ],
+                  ).box.rounded.padding(const EdgeInsets.all(8.0)).color(lightGolden).make().onTap(() {
+                    _launchURL(widget.data['lab_report4']);
+                  })
                 ],
               ),
             ),
@@ -135,7 +158,9 @@ class _WeekFourState extends State<WeekFour> {
     );
   }
   Future selectFile() async {
-    final result= await FilePicker.platform.pickFiles(allowMultiple: false);
+    final result= await FilePicker.platform.pickFiles(allowMultiple: false,
+    type: FileType.custom,
+    allowedExtensions: ['pdf'],);
     if (result == null) {
       return;
     }
@@ -154,7 +179,7 @@ class _WeekFourState extends State<WeekFour> {
     if (task == null) return;
     final snapshot = await task!.whenComplete((){});
     final urlDownload = await snapshot.ref.getDownloadURL();
-    controller.pdfLink4 = urlDownload;
+    controller.pdfLink4= urlDownload;
   }
 }
 

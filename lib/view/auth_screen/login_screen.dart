@@ -96,7 +96,7 @@ void changeScreen() {
                   10.heightBox,
                   Image.asset(icApplogo, width: 150,),
                   5.heightBox,
-                  'Sign In'.text.fontFamily(bold).size(35).color(highEmphasis).make(),
+                  'Log In'.text.fontFamily(bold).size(35).color(highEmphasis).make(),
                   25.heightBox,
                   Obx(()=>
                    Column(
@@ -117,7 +117,7 @@ void changeScreen() {
                             vaildation();
                           },
                           textColor: whiteColor,
-                          title: 'Sign In',
+                          title: 'Log In',
                           buttonSize: 20.0,
                         ).box.width(context.screenWidth).make(),
                       ],

@@ -38,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
       endDrawer: drawerWidget(context.screenWidth),
       body: Stack(
       children: [
-        Image.asset(icAppbg, fit: BoxFit.fill, height: context.screenHeight,),
+        Image.asset(icAppbg, fit: BoxFit.cover, width: context.screenWidth,),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: ListView(

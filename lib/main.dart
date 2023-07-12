@@ -16,15 +16,16 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: "DIU Lab Assistant",
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-        scaffoldBackgroundColor: whiteColor,
+        primarySwatch: Colors.lightGreen,
+        scaffoldBackgroundColor: Colors.white,
+        
         appBarTheme: const AppBarTheme(
           titleTextStyle: TextStyle(
             color: highEmphasis,
             fontFamily: bold,
             fontSize: 25,
           ),
-          backgroundColor: whiteColor,
+          backgroundColor: Colors.lightGreenAccent,
           elevation: 1,
           iconTheme: IconThemeData(
             color: darkFontGrey,

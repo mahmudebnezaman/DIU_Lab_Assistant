@@ -30,6 +30,7 @@ class _SemesterScreenState extends State<SemesterScreen> {
     var controller = Get.put(SemesterController());
 
     return Scaffold(
+    resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Text('${widget.data['semester_name']}', style: const TextStyle(fontWeight: FontWeight.bold)),
         leading: Image.asset(icApplogo).onTap(() {
