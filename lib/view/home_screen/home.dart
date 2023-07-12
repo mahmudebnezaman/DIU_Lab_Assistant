@@ -1,5 +1,4 @@
 import 'package:starterapp/const/consts.dart';
-import 'package:starterapp/const/images.dart';
 import 'package:starterapp/controller/home_controller.dart';
 import 'package:starterapp/view/home_screen/home_screen.dart';
 import 'package:starterapp/view/profile_screen/profile_screen.dart';
@@ -24,8 +23,8 @@ class _HomeState extends State<Home> {
     var controller = Get.put(HomeController());
 
     var navBarItem = [
-      BottomNavigationBarItem(icon: Icon(Icons.home_filled,), label: 'Home'),
-      BottomNavigationBarItem(icon: Icon(Icons.person_rounded, size: 30,), label: 'Profile'),
+      const BottomNavigationBarItem(icon: Icon(Icons.home_filled,), label: 'Home'),
+      const BottomNavigationBarItem(icon: Icon(Icons.person_rounded, size: 30,), label: 'Profile'),
     ];
 
     var navBody = [

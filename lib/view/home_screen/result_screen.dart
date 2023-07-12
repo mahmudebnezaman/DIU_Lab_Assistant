@@ -2,7 +2,6 @@ import 'package:starterapp/const/consts.dart';
 import 'package:starterapp/const/images.dart';
 import 'package:starterapp/const/loading_indicator.dart';
 import 'package:starterapp/controller/semester_controller.dart';
-import 'package:starterapp/view/home_screen/home_screen.dart';
 import 'package:starterapp/widgets-common/custom_textfeild.dart';
 import 'package:starterapp/widgets-common/end_drawer.dart';
 import 'package:starterapp/widgets-common/my_button.dart';

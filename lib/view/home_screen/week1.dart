@@ -1,14 +1,12 @@
 import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
-import 'package:file_selector/file_selector.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:path/path.dart';
 import 'package:starterapp/const/consts.dart';
 import 'package:starterapp/const/images.dart';
 import 'package:starterapp/const/loading_indicator.dart';
 import 'package:starterapp/controller/semester_controller.dart';
-import 'package:starterapp/view/home_screen/home_screen.dart';
 import 'package:starterapp/widgets-common/custom_textfeild.dart';
 import 'package:starterapp/widgets-common/end_drawer.dart';
 import 'package:starterapp/widgets-common/my_button.dart';
@@ -187,8 +185,9 @@ class FirebaseApi {
     try {
     final ref = FirebaseStorage.instance.ref(destination);
     return ref.putFile(file);
+  // ignore: unused_catch_clause
   } on Exception catch (e) {
-    // TODO
+    
     return null;
   }
   }

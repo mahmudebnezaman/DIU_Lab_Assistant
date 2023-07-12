@@ -4,9 +4,6 @@ import 'package:starterapp/const/images.dart';
 import 'package:starterapp/const/loading_indicator.dart';
 import 'package:starterapp/controller/semester_controller.dart';
 import 'package:starterapp/services/firestore_services.dart';
-import 'package:starterapp/view/home_screen/course_details.dart';
-import 'package:starterapp/view/home_screen/home.dart';
-import 'package:starterapp/view/home_screen/home_screen.dart';
 import 'package:starterapp/widgets-common/end_drawer.dart';
 
 class SemesterScreen extends StatefulWidget {

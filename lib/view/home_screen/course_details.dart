@@ -4,10 +4,8 @@ import 'package:starterapp/const/images.dart';
 import 'package:starterapp/const/loading_indicator.dart';
 import 'package:starterapp/controller/semester_controller.dart';
 import 'package:starterapp/services/firestore_services.dart';
-import 'package:starterapp/view/home_screen/home_screen.dart';
 import 'package:starterapp/view/home_screen/student_details.dart';
 import 'package:starterapp/widgets-common/end_drawer.dart';
-import 'package:starterapp/widgets-common/my_button.dart';
 
 class CourseDetailsScreen extends StatefulWidget {
   final dynamic data;

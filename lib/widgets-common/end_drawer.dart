@@ -4,8 +4,6 @@ import 'package:starterapp/controller/auth_controller.dart';
 import 'package:starterapp/view/admin_screen.dart/add_new_course.dart';
 import 'package:starterapp/view/admin_screen.dart/registration_screen.dart';
 import 'package:starterapp/view/auth_screen/login_screen.dart';
-import 'package:starterapp/view/home_screen/home_screen.dart';
-import 'package:starterapp/view/profile_screen/profile_screen.dart';
 import 'package:starterapp/widgets-common/my_button.dart';
 
 Widget drawerWidget(width){

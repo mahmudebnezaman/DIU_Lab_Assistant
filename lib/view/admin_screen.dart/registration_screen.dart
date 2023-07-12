@@ -2,13 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:starterapp/const/consts.dart';
 import 'package:starterapp/const/images.dart';
 import 'package:starterapp/const/loading_indicator.dart';
-import 'package:starterapp/controller/semester_controller.dart';
 import 'package:starterapp/services/firestore_services.dart';
 import 'package:starterapp/view/admin_screen.dart/add_student.dart';
-import 'package:starterapp/view/home_screen/course_details.dart';
-import 'package:starterapp/view/home_screen/semester.dart';
 import 'package:starterapp/widgets-common/end_drawer.dart';
-import 'package:intl/intl.dart';
 
 class RegisterNewStudent extends StatefulWidget {
   const RegisterNewStudent({Key? key}) : super(key: key);
@@ -24,7 +20,6 @@ class _RegisterNewStudentState extends State<RegisterNewStudent> {
   @override
   Widget build(BuildContext context) {
 
-    var controller = Get.put(SemesterController());
 
     return Scaffold(
       appBar: AppBar(
@@ -126,35 +121,4 @@ class _RegisterNewStudentState extends State<RegisterNewStudent> {
     );
   }
 
-  Future<void> _showYearPicker() async {
-    final DateTime? pickedYear = await showDialog<DateTime>(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Select Year'),
-          content: SizedBox(
-            width: MediaQuery.of(context).size.width * 0.5,
-            child: YearPicker(
-              firstDate: DateTime(2020),
-              lastDate: DateTime(2030),
-              initialDate: selectedOption2 ?? DateTime.now(),
-              selectedDate: selectedOption2 ?? DateTime.now(),
-              onChanged: (DateTime newDate) {
-                setState(() {
-                  selectedOption2 = newDate;
-                });
-                Navigator.of(context).pop(newDate);
-              },
-            ),
-          ),
-        );
-      },
-    );
-
-    if (pickedYear != null) {
-      setState(() {
-        selectedOption2 = pickedYear;
-      });
-    }
-  }
 }

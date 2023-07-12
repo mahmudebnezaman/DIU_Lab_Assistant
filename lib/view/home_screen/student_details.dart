@@ -2,7 +2,6 @@ import 'package:starterapp/const/consts.dart';
 import 'package:starterapp/const/images.dart';
 import 'package:starterapp/controller/semester_controller.dart';
 import 'package:starterapp/services/firestore_services.dart';
-import 'package:starterapp/view/home_screen/home_screen.dart';
 import 'package:starterapp/view/home_screen/result_screen.dart';
 import 'package:starterapp/view/home_screen/week1.dart';
 import 'package:starterapp/view/home_screen/week2.dart';
