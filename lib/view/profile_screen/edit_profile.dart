@@ -48,19 +48,20 @@ class _EditProfileInfoState extends State<EditProfileInfo> {
             child: Obx(
               ()=> Column(
                 mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Stack(
                       children: [
-                        widget.data['imageUrl'] == '' && controller.profileImagePath.isEmpty? Image.asset(icUser,fit: BoxFit.cover,height: 100,width: 100, color: fontGrey,).box.clip(Clip.antiAlias).roundedFull.white.shadow3xl.make()
-                        : widget.data['imageUrl'] != '' && controller.profileImagePath.isEmpty? Image.network(widget.data['imageUrl'],fit: BoxFit.cover,height: 100,width: 100).box.clip(Clip.antiAlias).roundedFull.border(color: whiteColor, width: 2).white.shadow3xl.make()
-                        : Image.file(File(controller.profileImagePath.value), width: 100, fit: BoxFit.cover,).box.clip(Clip.antiAlias).roundedFull.border(color: whiteColor, width: 2).white.shadow3xl.make(),
+                        widget.data['imageUrl'] == '' && controller.profileImagePath.isEmpty? Image.asset(icUser,fit: BoxFit.cover,color: fontGrey,height: 250,).box.height(150).width(150).clip(Clip.antiAlias).roundedFull.white.shadow3xl.make() 
+                        : widget.data['imageUrl'] != '' && controller.profileImagePath.isEmpty? Image.network(widget.data['imageUrl'],fit: BoxFit.cover,height: 250,).box.height(150).width(150).clip(Clip.antiAlias).roundedFull.white.shadow3xl.make()
+                        : Image.file(File(controller.profileImagePath.value), fit: BoxFit.cover,height: 250,).box.height(150).width(150).clip(Clip.antiAlias).roundedFull.white.shadow3xl.make(),
                         Align(
                           alignment: Alignment.bottomRight,
-                          child: Image.asset(icPencil,fit: BoxFit.fill,color: highEmphasis,height: 15,).box.roundedFull.white.padding(const EdgeInsets.all(4)).shadowSm.make().onTap(() {
+                          child: Image.asset(icPencil,fit: BoxFit.fill,color: highEmphasis,height: 25,).box.roundedFull.white.padding(const EdgeInsets.all(4)).shadowSm.make().onTap(() {
                       controller.changeImage(context);})),
     
                       ],
-                    ).box.height(100).width(100).make(),
+                    ).box.height(150).width(150).make(),
                   const Divider(),
                   20.heightBox,
                   customTextFeild(

@@ -7,18 +7,18 @@ import 'package:starterapp/widgets-common/custom_textfeild.dart';
 import 'package:starterapp/widgets-common/end_drawer.dart';
 import 'package:starterapp/widgets-common/my_button.dart';
 
-class ResultScreen extends StatefulWidget {
+class WeekTwo extends StatefulWidget {
   final dynamic data;
   final dynamic semesteID;
   final dynamic courseID;
 
-  const ResultScreen({Key? key, required this.data, required this.semesteID, required this.courseID}) : super(key: key);
+  const WeekTwo({Key? key, required this.data, required this.semesteID, required this.courseID}) : super(key: key);
 
   @override
-  State<ResultScreen> createState() => _ResultScreenState();
+  State<WeekTwo> createState() => _WeekTwoState();
 }
 
-class _ResultScreenState extends State<ResultScreen> {
+class _WeekTwoState extends State<WeekTwo> {
   var controller = Get.put(SemesterController());
 
   @override
@@ -80,32 +80,10 @@ class _ResultScreenState extends State<ResultScreen> {
                     children: [
                       'Edit Result Sheet'.text.color(Colors.green).semiBold.size(20).make(),
                       10.heightBox,
-                      // customTextFeild(title: 'Week1 Lab Perfomance: ', hint: 'out of 5', keytype: TextInputType.number, prefixIcon: const Icon(Icons.task), controller: controller.week1LabController),
-                      // 'out of 5'.text.color(fontGrey).make(),
-                      // 5.heightBox,
-                      // customTextFeild(title: 'Week2 Lab Perfomance: ', hint: 'out of 5', keytype: TextInputType.number, prefixIcon: const Icon(Icons.task), controller: controller.week2LabController),
-                      // 'out of 5'.text.color(fontGrey).make(),
-                      // 5.heightBox,
-                      // customTextFeild(title: 'Week3 Lab Perfomance: ', hint: 'out of 5', keytype: TextInputType.number, prefixIcon: const Icon(Icons.task), controller: controller.week3LabController),
-                      // 'out of 5'.text.color(fontGrey).make(),
-                      // 5.heightBox,
-                      // customTextFeild(title: 'Week4 Lab Perfomance: ', hint: 'out of 5', keytype: TextInputType.number, prefixIcon: const Icon(Icons.task), controller: controller.week4LabController),
-                      // 'out of 5'.text.color(fontGrey).make(),
-                      // 5.heightBox,
-                      // customTextFeild(title: 'Week5 Lab Perfomance: ', hint: 'out of out of 5', keytype: TextInputType.number, prefixIcon: const Icon(Icons.task), controller: controller.week5LabController),
-                      // 'out of 5'.text.color(fontGrey).make(),
-                      // 5.heightBox,
-                      customTextFeild(title: 'Assignment: ', hint: 'out of 10', keytype: TextInputType.number, prefixIcon: const Icon(Icons.assignment), controller: controller.assignmentController),
-                      'out of 10'.text.color(fontGrey).make(),
-                      5.heightBox,
-                      customTextFeild(title: 'Project: ', hint: 'out of 25', keytype: TextInputType.number, prefixIcon: const Icon(Icons.build_rounded), controller: controller.projectController),
-                      'out of 25'.text.color(fontGrey).make(),
-                      5.heightBox,
-                      customTextFeild(title: 'Lab Final: ', hint: 'out of 30', keytype: TextInputType.number, prefixIcon: const Icon(Icons.edit), controller: controller.labFinalController),
-                      'out of 30'.text.color(fontGrey).make(),
+                      customTextFeild(title: 'Week2 Lab Perfomance: ', hint: 'out of 5', keytype: TextInputType.number, prefixIcon: const Icon(Icons.task), controller: controller.week2LabController),
+                      'out of 5'.text.color(fontGrey).make(),
                     ],
                   ).box.white.rounded.make(),
-                  5.heightBox,
                   Obx(() => controller.isloading.value
                     ? loadingIndicator()
                     : myButton(

@@ -4,6 +4,7 @@ import 'package:starterapp/const/images.dart';
 import 'package:starterapp/controller/auth_controller.dart';
 import 'package:starterapp/view/auth_screen/login_screen.dart';
 import 'package:starterapp/view/home_screen/home.dart';
+import 'package:starterapp/view/home_screen/home_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -22,7 +23,7 @@ changeScreen(){
         if (user == null && mounted){
           Get.offAll (()=>const LoginScreen());
         } else  {
-          Get.offAll(()=>const HomeScreen());
+          Get.offAll(()=>const Home());
         }
       });
     });
@@ -38,14 +39,14 @@ changeScreen(){
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: whiteColor,
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(icApplogo).box.size(220, 220).make(),
-          ],
-        ),
-      ),
+      body: Stack(
+        children: [
+          Image.asset(icAppbg, fit: BoxFit.fill, height: context.screenHeight,),
+          Center(
+            child: Image.asset(icApplogo, height: 250,).box.white.roundedLg.padding(const EdgeInsets.all(4.0)).shadowLg.make()
+          )
+        ],
+      )
     );
   }
 }

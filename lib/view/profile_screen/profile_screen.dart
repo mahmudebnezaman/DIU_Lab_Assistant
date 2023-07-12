@@ -51,28 +51,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
               child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Align(
-                  alignment: Alignment.topCenter,
-                  child: Column(
-                    children: [
-                      Stack(
-                        children: [
-                          data['imageUrl'] == '' ? Image.asset(icUser,fit: BoxFit.cover,height: 100,width: 100, color: fontGrey,).box.clip(Clip.antiAlias).roundedFull.border(color: whiteColor, width: 2).white.shadow3xl.make() 
-                          : Image.network(data['imageUrl'],fit: BoxFit.cover,height: 100,width: 100).box.clip(Clip.antiAlias).roundedFull.white.shadow3xl.make(),
-                          if(data['password'] != '') Align(
-                            alignment: Alignment.bottomRight,
-                            child: Image.asset(icPencil,fit: BoxFit.fill,color: highEmphasis,height: 15,).box.roundedFull.white.padding(const EdgeInsets.all(4)).shadowSm.make().onTap(() {controller.nameController.text = data['name'];
-                              Get.to(()=> EditProfileInfo(data: data,));})),
-        
-                        ],
-                      ).box.height(100).width(100).make(),
-                      10.heightBox,
-                      "${data['name']}".text.size(20).fontFamily(bold).color(highEmphasis).make(),
-                      "${data['email']}".text.size(18).fontFamily(regular).color(fontGrey).make(),
-                    ],
-                  ),
-                ),
+                data['imageUrl'] == '' ? Image.asset(icUser,fit: BoxFit.cover,height: 250,width: 250, color: fontGrey,).box.height(150).width(150).clip(Clip.antiAlias).roundedFull.white.shadow3xl.make() 
+                : Image.network(data['imageUrl'],fit: BoxFit.cover,height: 250,width: 250).box.height(150).width(150).clip(Clip.antiAlias).roundedFull.white.shadow3xl.make(),
                 10.heightBox,
+                "${data['name']}".text.size(30).bold.color(highEmphasis).make(),
+                "${data['email']}".text.size(18).fontFamily(regular).color(fontGrey).make(),
+                20.heightBox,
+                const Divider(),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

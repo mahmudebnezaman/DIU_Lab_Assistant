@@ -1,8 +1,10 @@
 import 'package:path/path.dart';
 import 'package:starterapp/const/consts.dart';
 import 'package:starterapp/controller/auth_controller.dart';
+import 'package:starterapp/view/admin_screen.dart/add_new_course.dart';
+import 'package:starterapp/view/admin_screen.dart/registration_screen.dart';
 import 'package:starterapp/view/auth_screen/login_screen.dart';
-import 'package:starterapp/view/home_screen/home.dart';
+import 'package:starterapp/view/home_screen/home_screen.dart';
 import 'package:starterapp/view/profile_screen/profile_screen.dart';
 import 'package:starterapp/widgets-common/my_button.dart';
 
@@ -15,9 +17,9 @@ Widget drawerWidget(width){
               children: [
                 Align(alignment: Alignment.centerLeft, child: const Icon(Icons.arrow_back,).onTap(() {Get.back();})),
                 10.heightBox,
-                'Dashboard'.text.center.semiBold.size(20).make().box.padding(const EdgeInsets.all(12)).white.width(width).roundedSM.shadow.make().onTap(() {Get.to(()=> const HomeScreen());}),
+                'Add New Course'.text.center.semiBold.size(20).make().box.padding(const EdgeInsets.all(12)).white.width(width).roundedSM.shadow.make().onTap(() {Get.to(()=> const AddNewCourse());}),
                 10.heightBox,
-                'Profile'.text.center.semiBold.size(20).make().box.padding(const EdgeInsets.all(12)).white.width(width).roundedSM.shadow.make().onTap(() {Get.to(()=> const ProfileScreen());}),
+                'Register New Student'.text.center.semiBold.size(20).make().box.padding(const EdgeInsets.all(12)).white.width(width).roundedSM.shadow.make().onTap(() {Get.to(()=> const RegisterNewStudent());}),
                 const Spacer(),
                 myButton(
                   buttonSize: 20.0,

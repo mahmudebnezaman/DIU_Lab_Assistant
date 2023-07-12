@@ -7,6 +7,7 @@ import 'package:starterapp/controller/auth_controller.dart';
 
 import 'package:starterapp/view/auth_screen/signup_screen.dart';
 import 'package:starterapp/view/home_screen/home.dart';
+import 'package:starterapp/view/home_screen/home_screen.dart';
 import 'package:starterapp/widgets-common/custom_passwordfeild.dart';
 import 'package:starterapp/widgets-common/custom_textfeild.dart';
 import 'package:starterapp/widgets-common/my_button.dart';
@@ -30,7 +31,7 @@ void changeScreen() {
     if (user == null && mounted) {
       Get.offAll(() => const LoginScreen());
     } else if (user != null) {
-       Get.offAll(() => const HomeScreen());
+       Get.offAll(() => const Home());
     }
   });
 }
@@ -81,58 +82,65 @@ void changeScreen() {
    return Scaffold(
     resizeToAvoidBottomInset: false,
     backgroundColor: whiteColor,
-    body: SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.all(24),
-        child: SingleChildScrollView(
+    body: Stack(
+      children: [
+        Image.asset(icAppbg, fit: BoxFit.fill, height: context.screenHeight,),
+        Padding(
+          padding: const EdgeInsets.all(24),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              10.heightBox,
-              Image.asset(icApplogo, width: 150,),
-              5.heightBox,
-              'Sign In'.text.fontFamily(bold).size(35).color(highEmphasis).make(),
-              25.heightBox,
-              Obx(()=>
-               Column(
-                  children: [
-                    customTextFeild(hint: 'example@email.com', title: 'Email', prefixIcon: const Icon(Icons.email_rounded), controller: controller.emailController),
-                    10.heightBox,
-                    customPasswordFeild(hint: 'xxxxxx', title: 'Password', obsText: isPass, suffixIcon: InkWell(
-                      onTap: togglePasswordView,
-                      child: Icon(
-                        isPass 
-                          ? Icons.visibility 
-                          : Icons.visibility_off,
-                      )), controller: controller.passwordController),
-                    10.heightBox,
-                    controller.isloading.value ?  loadingIndicator() : myButton(
-                      color: primary,
-                      onPress: () {
-                        vaildation();
-                      },
-                      textColor: whiteColor,
-                      title: 'Sign In',
-                      buttonSize: 20.0,
-                    ).box.width(context.screenWidth).make(),
-                  ],
-                ),
-              ),
-        
-              10.heightBox,
-              Align(
-                alignment: Alignment.center,
-                child: 'or'.text.color(fontGrey).size(16).fontFamily(semibold).make(),
-              ),
-        
-              10.heightBox,
-              'Create New Account'.text.color(primary).size(20).semiBold.make().onTap(() {
-                Get.to(()=> const SignUp());
-              })
+              Column(
+                children: [
+                  10.heightBox,
+                  Image.asset(icApplogo, width: 150,),
+                  5.heightBox,
+                  'Sign In'.text.fontFamily(bold).size(35).color(highEmphasis).make(),
+                  25.heightBox,
+                  Obx(()=>
+                   Column(
+                      children: [
+                        customTextFeild(hint: 'example@email.com', title: 'Email', prefixIcon: const Icon(Icons.email_rounded), controller: controller.emailController),
+                        10.heightBox,
+                        customPasswordFeild(hint: 'xxxxxx', title: 'Password', obsText: isPass, suffixIcon: InkWell(
+                          onTap: togglePasswordView,
+                          child: Icon(
+                            isPass 
+                              ? Icons.visibility 
+                              : Icons.visibility_off,
+                          )), controller: controller.passwordController),
+                        10.heightBox,
+                        controller.isloading.value ?  loadingIndicator() : myButton(
+                          color: primary,
+                          onPress: () {
+                            vaildation();
+                          },
+                          textColor: whiteColor,
+                          title: 'Sign In',
+                          buttonSize: 20.0,
+                        ).box.width(context.screenWidth).make(),
+                      ],
+                    ),
+                  ),
+                        
+                  10.heightBox,
+                  Align(
+                    alignment: Alignment.center,
+                    child: 'or'.text.color(fontGrey).size(16).fontFamily(semibold).make(),
+                  ),
+                        
+                  10.heightBox,
+                  'Create New Account'.text.color(primary).size(20).semiBold.make().onTap(() {
+                    Get.to(()=> const SignUp());
+                  }),
+                  10.heightBox,
+                ],
+              ).box.white.roundedLg.padding(const EdgeInsets.all(12.0)).shadowLg.make()
             ],
           ),
         ),
-      ),
+      ],
     ),
    );
   }

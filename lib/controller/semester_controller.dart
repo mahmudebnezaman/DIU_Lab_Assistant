@@ -1,7 +1,13 @@
 // ignore_for_file: avoid_print
 
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:file_picker/file_picker.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:path/path.dart';
 import 'package:starterapp/const/consts.dart';
 class SemesterController extends GetxController {
   final RxBool isloading = false.obs;
@@ -17,6 +23,10 @@ class SemesterController extends GetxController {
   var assignmentController = TextEditingController();
   var projectController = TextEditingController();
   var labFinalController = TextEditingController();
+
+  var pdfPath = ''.obs;
+
+  var pdfLink = '';
 
   Future<void> createNewSemester(String selectedOption1, DateTime? selectedOption2) async {
     try {
@@ -113,6 +123,6 @@ class SemesterController extends GetxController {
   }
 }
 
-
+ 
 
 }

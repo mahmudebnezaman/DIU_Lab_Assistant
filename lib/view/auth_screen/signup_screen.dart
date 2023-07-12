@@ -3,6 +3,7 @@ import 'package:starterapp/const/images.dart';
 import 'package:starterapp/const/loading_indicator.dart';
 import 'package:starterapp/controller/auth_controller.dart';
 import 'package:starterapp/view/home_screen/home.dart';
+import 'package:starterapp/view/home_screen/home_screen.dart';
 import 'package:starterapp/widgets-common/custom_passwordfeild.dart';
 import 'package:starterapp/widgets-common/custom_textfeild.dart';
 import 'package:starterapp/widgets-common/my_button.dart';
@@ -67,7 +68,7 @@ class _SignUpState extends State<SignUp> {
           }).then((value) {
             VxToast.show(context, msg: 'Account Created');
             controller.isloading(false);
-            Get.to(()=> const HomeScreen());
+            Get.to(()=> const Home());
          });
       } catch(e){
         controller.isloading(false);
@@ -94,60 +95,62 @@ class _SignUpState extends State<SignUp> {
    return Scaffold(
     // resizeToAvoidBottomInset: false,
     backgroundColor: whiteColor,
-    body: SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.all(24),
-        child:
-          SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                10.heightBox,
-                Image.asset(icApplogo, width: 150,),
-                5.heightBox,
-                'Sign Up'.text.fontFamily(bold).size(35).color(highEmphasis).make(),
-                //textfeild
-                25.heightBox,
-                customTextFeild(title: 'Name', hint: 'ex: Captain Jake Sppawrow', controller: nameController, prefixIcon: nameIcon),
-                10.heightBox,
-                customTextFeild(hint: 'example@email.com', title: 'Email', prefixIcon: emailIcon, controller: emailController),
-                10.heightBox,
-                customPasswordFeild(hint: 'xxxxxx', title: 'Password', obsText: isPass, suffixIcon: InkWell(
-                onTap: togglePasswordView,
-                child: Icon(
-                  isPass 
-                    ? Icons.visibility 
-                    : Icons.visibility_off,
-                )), controller: passwordController),
-                10.heightBox,
-                customPasswordFeild(hint: 'xxxxxx', title: 'Confirm Password', obsText: isConfirmPass, suffixIcon: InkWell(
-                onTap: toggleConfirmPasswordView,
-                child: Icon(
-                  isConfirmPass 
-                    ? Icons.visibility 
-                    : Icons.visibility_off,
-                )), controller: retypePasswordController),
-                5.heightBox,
-                controller.isloading.value ? loadingIndicator() : myButton(
-                  color: isCheck == true ? primary : lightGrey,
-                  title: 'Sign Up',
-                  textColor: isCheck == true ? whiteColor : fontGrey,
-                  onPress: (){
-                    vaildation();
-                  },
-                  buttonSize: 20.0,
-                ).box.width(context.screenWidth).make(),
-                10.heightBox,
-                'or'.text.color(fontGrey).size(16).fontFamily(semibold).make(),
-                10.heightBox,
-                'Sing in here'.text.color(primary).size(20).semiBold.make().onTap((){
-                   Get.back();
-                }),
-              ],
+    body: Stack(
+      children: [
+        Image.asset(icAppbg, fit: BoxFit.fill, height: context.screenHeight,),
+        Padding(
+          padding: const EdgeInsets.all(24),
+          child:
+            SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Image.asset(icApplogo, width: 150,),
+                  5.heightBox,
+                  'Sign Up'.text.fontFamily(bold).size(35).color(highEmphasis).make(),
+                  //textfeild
+                  25.heightBox,
+                  customTextFeild(title: 'Name', hint: 'ex: Captain Jake Sppawrow', controller: nameController, prefixIcon: nameIcon),
+                  10.heightBox,
+                  customTextFeild(hint: 'example@email.com', title: 'Email', prefixIcon: emailIcon, controller: emailController),
+                  10.heightBox,
+                  customPasswordFeild(hint: 'xxxxxx', title: 'Password', obsText: isPass, suffixIcon: InkWell(
+                  onTap: togglePasswordView,
+                  child: Icon(
+                    isPass 
+                      ? Icons.visibility 
+                      : Icons.visibility_off,
+                  )), controller: passwordController),
+                  10.heightBox,
+                  customPasswordFeild(hint: 'xxxxxx', title: 'Confirm Password', obsText: isConfirmPass, suffixIcon: InkWell(
+                  onTap: toggleConfirmPasswordView,
+                  child: Icon(
+                    isConfirmPass 
+                      ? Icons.visibility 
+                      : Icons.visibility_off,
+                  )), controller: retypePasswordController),
+                  5.heightBox,
+                  controller.isloading.value ? loadingIndicator() : myButton(
+                    color: isCheck == true ? primary : lightGrey,
+                    title: 'Sign Up',
+                    textColor: isCheck == true ? whiteColor : fontGrey,
+                    onPress: (){
+                      vaildation();
+                    },
+                    buttonSize: 20.0,
+                  ).box.width(context.screenWidth).make(),
+                  10.heightBox,
+                  'or'.text.color(fontGrey).size(16).fontFamily(semibold).make(),
+                  10.heightBox,
+                  'Sing in here'.text.color(primary).size(20).semiBold.make().onTap((){
+                     Get.back();
+                  }),
+                ],
+              ).box.white.roundedLg.padding(const EdgeInsets.all(12.0)).shadowLg.make(),
             ),
           ),
-        )
-      ),
+      ],
+    ),
     );
   }
 }
