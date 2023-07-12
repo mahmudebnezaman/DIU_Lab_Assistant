@@ -23,10 +23,11 @@ class SemesterController extends GetxController {
   var assignmentController = TextEditingController();
   var projectController = TextEditingController();
   var labFinalController = TextEditingController();
-
-  var pdfPath = ''.obs;
-
-  var pdfLink = '';
+  var pdfLink1 = '';
+  var pdfLink2 = '';
+  var pdfLink3 = '';
+  var pdfLink4 = '';
+  var pdfLink5 = '';
 
   Future<void> createNewSemester(String selectedOption1, DateTime? selectedOption2) async {
     try {
@@ -86,7 +87,12 @@ class SemesterController extends GetxController {
             'week_five_lp': '0',
             'assignment': '0',
             'project': '0',
-            'lab_final': '0'
+            'lab_final': '0',
+            'lab_report1': '',
+          'lab_report2': '',
+          'lab_report3': '',
+          'lab_report4':'',
+          'lab_report5': ''
           });
       isloading.value = false;
     } catch (e) {
@@ -114,7 +120,12 @@ class SemesterController extends GetxController {
           'week_five_lp': week5LabController.text,
           'assignment': assignmentController.text,
           'project': projectController.text,
-          'lab_final': labFinalController.text
+          'lab_final': labFinalController.text,
+          'lab_report1': pdfLink1,
+          'lab_report2': pdfLink2,
+          'lab_report3': pdfLink3,
+          'lab_report4': pdfLink4,
+          'lab_report5': pdfLink5,
         }, SetOptions(merge: true));
     isloading.value = false;
   } catch (e) {

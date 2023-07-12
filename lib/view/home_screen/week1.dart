@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:file_selector/file_selector.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:path/path.dart';
 import 'package:starterapp/const/consts.dart';
 import 'package:starterapp/const/images.dart';
 import 'package:starterapp/const/loading_indicator.dart';
@@ -26,6 +27,9 @@ class WeekOne extends StatefulWidget {
 }
 
 class _WeekOneState extends State<WeekOne> {
+  UploadTask? task;
+  File? file;
+  
   var controller = Get.put(SemesterController());
 
   @override
@@ -39,26 +43,20 @@ class _WeekOneState extends State<WeekOne> {
     controller.projectController.text = widget.data['project'];
     controller.assignmentController.text = widget.data['assignment'];
     controller.labFinalController.text = widget.data['lab_final'];
+    controller.pdfLink1 = widget.data['lab_report1'];
+    controller.pdfLink2 = widget.data['lab_report2'];
+    controller.pdfLink3 = widget.data['lab_report3'];
+    controller.pdfLink4 = widget.data['lab_report4'];
+    controller.pdfLink5 = widget.data['lab_report5'];
   }
 
-Future<String> uploadPdf(File file) async {
-  var destination = 'pdfs/${auth.currentUser!.uid}/${file.path.split('/').last}';
-  Reference ref = FirebaseStorage.instance.ref().child(destination);
-  await ref.putFile(file);
-  final downloadLink = await ref.getDownloadURL();
-  return downloadLink;
-}
-
-
-
-
-  void validator() {
+  void validator(context) {
     if (int.parse(controller.week1LabController.text) > 5 ||
         int.parse(controller.week2LabController.text) > 5 ||
         int.parse(controller.week3LabController.text) > 5 ||
         int.parse(controller.week4LabController.text) > 5 ||
         int.parse(controller.week5LabController.text) > 5) {
-      VxToast.show(context, msg: 'max Lab Performance mark is 5');
+      VxToast.show(context , msg: 'max Lab Performance mark is 5');
     } else if (int.parse(controller.assignmentController.text) > 10) {
       VxToast.show(context, msg: 'max Assignment mark is 10');
     } else if (int.parse(controller.projectController.text) > 25) {
@@ -66,7 +64,8 @@ Future<String> uploadPdf(File file) async {
     } else if (int.parse(controller.labFinalController.text) > 30) {
       VxToast.show(context, msg: 'max Lab Final mark is 30');
     } else {
-      controller.editStudentResult(widget.semesteID, widget.courseID, widget.data.id);
+      uploadFile().then((value) => controller.editStudentResult(widget.semesteID, widget.courseID, widget.data.id));
+      
       VxToast.show(context, msg: 'Result Updated');
       Get.back();
     }
@@ -74,7 +73,9 @@ Future<String> uploadPdf(File file) async {
 
   @override
   Widget build(BuildContext context) {
+    final fileName = file != null? basename(file!.path) : 'Project Report';
     return Scaffold(
+      
       appBar: AppBar(
         title: Text(
           '${widget.data['id']}',
@@ -90,6 +91,7 @@ Future<String> uploadPdf(File file) async {
       endDrawer: drawerWidget(context.screenWidth),
       body: 
       Stack(
+
       children: [
         Image.asset(icAppbg, fit: BoxFit.fill, height: context.screenHeight,),
           Padding(
@@ -106,6 +108,11 @@ Future<String> uploadPdf(File file) async {
                       'out of 5'.text.color(fontGrey).make(),
                     ],
                   ).box.white.rounded.make(),
+                  10.heightBox,
+                  const Icon(Icons.file_upload_rounded, size: 60,).onTap(() {
+                    selectFile();
+                  }),
+                  fileName.text.size(20).semiBold.color(highEmphasis).make(),
                   Obx(() => controller.isloading.value
                     ? loadingIndicator()
                     : myButton(
@@ -114,15 +121,12 @@ Future<String> uploadPdf(File file) async {
                       textColor: whiteColor,
                       title: 'Save',
                       onPress: () {
-                        validator();
+                        validator(context);
                       }
                     )
                   ),
-                  // 10.heightBox,
-                  // const Icon(Icons.file_upload_rounded, size: 60,).onTap(() {
-                    
-                  // }),
-                  // 'Project Report'.text.size(20).semiBold.color(highEmphasis).make()
+                  10.heightBox,
+                  widget.data['lab_report1'] != null ?'The report is available at: ${widget.data['lab_report1']}'.text.size(16).make().box.rounded.color(lightGolden).make() : 'Please upload the porject report'.text.size(16).make().box.rounded.color(lightGolden).make()
                 ],
               ),
             ),
@@ -130,5 +134,39 @@ Future<String> uploadPdf(File file) async {
         ],
       ),
     );
+  }
+  Future selectFile() async {
+    final result= await FilePicker.platform.pickFiles(allowMultiple: false);
+    if (result == null) {
+      return;
+    }
+    
+      final path = result.files.single.path!;
+      setState(() {
+        file = File(path);
+      });
+
+  }
+
+  Future uploadFile() async{
+    final fileName = basename(file!.path);
+    final destination = 'week1/$fileName';
+    task = FirebaseApi.uploadFile(destination, file!);
+    if (task == null) return;
+    final snapshot = await task!.whenComplete((){});
+    final urlDownload = await snapshot.ref.getDownloadURL();
+    controller.pdfLink1= urlDownload;
+  }
+}
+
+class FirebaseApi {
+  static UploadTask? uploadFile(String destination, File file){
+    try {
+    final ref = FirebaseStorage.instance.ref(destination);
+    return ref.putFile(file);
+  } on Exception catch (e) {
+    // TODO
+    return null;
+  }
   }
 }
