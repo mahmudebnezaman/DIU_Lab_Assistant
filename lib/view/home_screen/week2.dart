@@ -77,7 +77,7 @@ class _WeekTwoState extends State<WeekTwo> {
 
   @override
   Widget build(BuildContext context) {
-    final fileName = file != null? basename(file!.path) : 'Project Report';
+    final fileName = file != null? basename(file!.path) : 'Lab Report';
     return Scaffold(
     resizeToAvoidBottomInset: false,
       appBar: AppBar(
@@ -166,7 +166,31 @@ class _WeekTwoState extends State<WeekTwo> {
                     ],
                   ).box.rounded.padding(const EdgeInsets.all(8.0)).color(lightGolden).make().onTap(() {
                     _launchURL(widget.data['lab_report2']);
-                  }) 
+                  }),
+                   10.heightBox,
+                  Column(
+                    children: [
+                      'The student was: '.text.size(16).make(),
+                      5.heightBox,
+                      myButton(
+                        buttonSize: 20.0,
+                        color: widget.data['week2_attendance'] == '2' ? Colors.lightGreenAccent : Colors.redAccent,
+                        onPress: widget.data['week2_attendance'] == '2' ? 
+                          (){
+                            controller.editStudentAttendance(widget.semesteID, widget.courseID, widget.data.id,'week2_attendance', '0');
+                            VxToast.show(context, msg: 'The student was absent');
+                            Get.back();
+                          } : 
+                          (){
+                            controller.editStudentAttendance(widget.semesteID, widget.courseID, widget.data.id,'week2_attendance', '2');
+                            VxToast.show(context, msg: 'The student was present');
+                            Get.back();
+                          },
+                        textColor: highEmphasis,
+                        title: widget.data['week2_attendance'] == '2' ? 'Present' : 'Absent'
+                      ),
+                    ],
+                  ).box.rounded.padding(const EdgeInsets.all(8.0)).color(Colors.lightBlueAccent).make() 
                 ],
               ),
             ),

@@ -63,6 +63,16 @@ class _StudentDetailsScreenState extends State<StudentDetailsScreen> {
                     return weekOneLP + weekTwoLP + weekThreeLP + weekFourLP + weekFiveLP;
                   }
 
+                  int calculateAttendanceMark() {
+                    int weekOneLP = int.parse(data['week1_attendance']);
+                    int weekTwoLP = int.parse(data['week2_attendance']);
+                    int weekThreeLP = int.parse(data['week3_attendance']);
+                    int weekFourLP = int.parse(data['week4_attendance']);
+                    int weekFiveLP = int.parse(data['week5_attendance']);
+
+                    return weekOneLP + weekTwoLP + weekThreeLP + weekFourLP + weekFiveLP;
+                  }
+
                   String calculateFinalResult() {
                     int weekOneLP = int.parse(data['week_one_lp']);
                     int weekTwoLP = int.parse(data['week_two_lp']);
@@ -72,14 +82,13 @@ class _StudentDetailsScreenState extends State<StudentDetailsScreen> {
                     int assignment = int.parse(data['assignment']);
                     int project = int.parse(data['project']);
                     int labFinal = int.parse(data['lab_final']);
+                    int attendance1 = int.parse(data['week1_attendance']);
+                    int attendance2 = int.parse(data['week2_attendance']);
+                    int attendance3 = int.parse(data['week3_attendance']);
+                    int attendance4 = int.parse(data['week4_attendance']);
+                    int attendance5 = int.parse(data['week5_attendance']);
 
-                    weekOneLP != 0 ? weekOneLP+=2 : weekOneLP+=0;
-                    weekTwoLP != 0 ? weekTwoLP+=2 : weekTwoLP+=0;
-                    weekThreeLP != 0 ? weekThreeLP+=2 : weekThreeLP+=0;
-                    weekFourLP != 0 ? weekFourLP+=2 : weekFourLP+=0;
-                    weekFiveLP != 0 ? weekFiveLP+=2 : weekFiveLP+=0;
-
-                    var result = weekOneLP + weekTwoLP + weekThreeLP + weekFourLP + weekFiveLP+ assignment + project + labFinal;
+                    var result = weekOneLP + weekTwoLP + weekThreeLP + weekFourLP + weekFiveLP+ assignment + project + labFinal + attendance1 + attendance2 + attendance3 + attendance4 + attendance5;
 
                     if (result >= 80){
                       return '\nGrade: A+\nGrade Point: 4.00';
@@ -166,6 +175,15 @@ class _StudentDetailsScreenState extends State<StudentDetailsScreen> {
                               Row(
                                 children: [
                                   Image.asset(icPerformance, height: 20, color: highEmphasis,), 5.widthBox,
+                                  'Attendance: '.text.semiBold.color(highEmphasis).size(18).make(),
+                                  calculateAttendanceMark().text.semiBold.color(primary).size(18).make(),
+                                  ' out of 10'.text.semiBold.color(fontGrey).size(14).make(),
+                                ],
+                              ),
+                              5.heightBox,
+                              Row(
+                                children: [
+                                  Image.asset(icPerformance, height: 20, color: highEmphasis,), 5.widthBox,
                                   'Lab Performance: '.text.semiBold.color(highEmphasis).size(18).make(),
                                   '${calculateLabPerformanceTotal()}'.text.semiBold.color(primary).size(18).make(),
                                   ' out of 25'.text.semiBold.color(fontGrey).size(14).make(),
@@ -203,7 +221,7 @@ class _StudentDetailsScreenState extends State<StudentDetailsScreen> {
                                 children: [
                                   Image.asset(icResult, height: 20, color: highEmphasis,), 5.widthBox,
                                   'Final Result: '.text.bold.color(highEmphasis).size(20).make(),
-                                  calculateFinalResult().text.semiBold.color(calculateFinalResult() == 'Grade: F, Grade Point: 0.00' ? Colors.red : Colors.green).size(18).make(),
+                                  calculateFinalResult().text.semiBold.color(calculateFinalResult() == '\nGrade: F\nGrade Point: 0.00' ? Colors.red : Colors.green).size(18).make(),
                                 ],
                               ),
                             ],

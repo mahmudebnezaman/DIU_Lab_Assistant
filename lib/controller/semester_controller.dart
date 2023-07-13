@@ -84,10 +84,15 @@ class SemesterController extends GetxController {
             'project': '0',
             'lab_final': '0',
             'lab_report1': '',
-          'lab_report2': '',
-          'lab_report3': '',
-          'lab_report4':'',
-          'lab_report5': ''
+            'lab_report2': '',
+            'lab_report3': '',
+            'lab_report4':'',
+            'lab_report5': '',
+            'week1_attendance': '0',
+            'week2_attendance': '0',
+            'week3_attendance': '0',
+            'week4_attendance': '0',
+            'week5_attendance': '0',
           });
       isloading.value = false;
     } catch (e) {
@@ -96,8 +101,8 @@ class SemesterController extends GetxController {
     }
   }
 
-  Future<void> editStudentResult(String docId, String courseId, String studentId) async {
-    print('Inside update mark method');
+Future<void> editStudentResult(String docId, String courseId, String studentId) async {
+    // print('Inside update mark method');
   try {
     await firestore
         .collection('users')
@@ -130,6 +135,27 @@ class SemesterController extends GetxController {
   }
 }
 
+Future<void> editStudentAttendance(String docId, String courseId, String studentId,weekName, attendance) async {
+    // print('Inside update mark method');
+  try {
+    await firestore
+        .collection('users')
+        .doc(auth.currentUser!.uid)
+        .collection('semesters')
+        .doc(docId)
+        .collection('course')
+        .doc(courseId)
+        .collection('students')
+        .doc(studentId)
+        .set({
+          weekName: attendance,
+        }, SetOptions(merge: true));
+    isloading.value = false;
+  } catch (e) {
+    print('Error registering new student: $e');
+    isloading.value = false;
+  }
+}
  
 
 }
