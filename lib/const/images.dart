@@ -1,4 +1,5 @@
 const icAssingment = "assets/icons/assignment.png";
+const icAttendance = "assets/icons/attendance.png";
 const icApplogo = "assets/applogo.png";
 const icAppbg = "assets/appbg.png";
 const icCheck = "assets/icons/check.png";

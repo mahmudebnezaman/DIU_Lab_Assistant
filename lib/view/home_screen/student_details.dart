@@ -174,7 +174,7 @@ class _StudentDetailsScreenState extends State<StudentDetailsScreen> {
                               // const Divider(),
                               Row(
                                 children: [
-                                  Image.asset(icPerformance, height: 20, color: highEmphasis,), 5.widthBox,
+                                  Image.asset(icAttendance, height: 20, color: highEmphasis,), 5.widthBox,
                                   'Attendance: '.text.semiBold.color(highEmphasis).size(18).make(),
                                   calculateAttendanceMark().text.semiBold.color(primary).size(18).make(),
                                   ' out of 10'.text.semiBold.color(fontGrey).size(14).make(),
@@ -225,7 +225,7 @@ class _StudentDetailsScreenState extends State<StudentDetailsScreen> {
                                 ],
                               ),
                             ],
-                          ).box.white.rounded.make(),
+                          ).box.white.rounded.padding(const EdgeInsets.all(8)).make(),
                           10.heightBox,
                           Center(
                             child: myButton(
