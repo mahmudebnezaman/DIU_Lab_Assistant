@@ -12,7 +12,7 @@ class SignUp extends StatefulWidget {
   @override
   State<SignUp> createState() => _SignUpState();
 }
-  String p = r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+  String p = r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"])*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
 
   RegExp regExp = RegExp(p);
 
@@ -108,7 +108,7 @@ class _SignUpState extends State<SignUp> {
                   'Sign Up'.text.fontFamily(bold).size(35).color(highEmphasis).make(),
                   //textfeild
                   25.heightBox,
-                  customTextFeild(title: 'Name', hint: 'ex: Captain Jake Sppawrow', controller: nameController, prefixIcon: nameIcon),
+                  customTextFeild(title: 'Name', hint: 'ex: Mr. Example', controller: nameController, prefixIcon: nameIcon),
                   10.heightBox,
                   customTextFeild(hint: 'example@email.com', title: 'Email', prefixIcon: emailIcon, controller: emailController),
                   10.heightBox,
@@ -140,7 +140,7 @@ class _SignUpState extends State<SignUp> {
                   10.heightBox,
                   'or'.text.color(fontGrey).size(16).fontFamily(semibold).make(),
                   10.heightBox,
-                  'Sing in here'.text.color(primary).size(20).semiBold.make().onTap((){
+                  'Sign in here'.text.color(primary).size(20).semiBold.make().onTap((){
                      Get.back();
                   }),
                 ],
