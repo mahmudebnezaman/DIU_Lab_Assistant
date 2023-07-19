@@ -66,7 +66,7 @@ class _EditProfileInfoState extends State<EditProfileInfo> {
                   20.heightBox,
                   customTextFeild(
                     controller: controller.nameController,
-                    hint: 'Captain Jack Spparow',
+                    hint: 'Md. Sazzad Hossain',
                     title: 'Name',
                     prefixIcon: nameIcon,
                   ),

@@ -108,7 +108,7 @@ class _SignUpState extends State<SignUp> {
                   'Sign Up'.text.fontFamily(bold).size(35).color(highEmphasis).make(),
                   //textfeild
                   25.heightBox,
-                  customTextFeild(title: 'Name', hint: 'ex: Mr. Example', controller: nameController, prefixIcon: nameIcon),
+                  customTextFeild(title: 'Name', hint: 'ex: Md. Sazzad Hossain', controller: nameController, prefixIcon: nameIcon),
                   10.heightBox,
                   customTextFeild(hint: 'example@email.com', title: 'Email', prefixIcon: emailIcon, controller: emailController),
                   10.heightBox,
